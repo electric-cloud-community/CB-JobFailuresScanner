@@ -1,0 +1,46 @@
+pluginInfo:
+  # This is default sample specification
+  # Feel free to change it
+  # Call flowpdk showdoc pluginspec to see the list of available fields and their description
+  pluginName: 'CB-JobFailuresScanner'
+  version: '1.0.0'
+  description: 'This plugin will scan for the failed procedures/pipelines runs and send notifications'
+  author: 'Polina'
+  supportUrl: 'pshubina@cloudbees.com'
+  category: 'Utilities'
+
+procedures:
+-
+  name: 'Scan Failed Pipelines'
+  description: 'This procedure scans for the failed pipelines in the specified projects. The procedure should run from a schedule (it is using schedule context for state saving).'
+  # configuration field will be generated automatically
+  shell: 'ec-perl'
+  parameters:
+  - name: projectName
+    documentation: Project to scan
+    required: true
+    type: project
+    label: Projects
+  - name: pipelines
+    type: textarea
+    required: false
+    label: Pipelines
+    documentation: List of pipelines to scan for failures. If nothing is provided, all the found pipelines are scanned.
+  - name: sendTo
+    type: textarea
+    required: false
+    documentation: List of emails to send reports to, newline-separated.
+    label: Send To
+  - name: statePropertySheet
+    type: entry
+    required: false
+    label: State Property Sheet
+    documentation: |
+      Property sheet to save state. Should be writable by the project @PLUGIN_NAME@.
+      If not provided, the state will be saved into /mySchedule.
+  - name: resultProperty
+    type: entry
+    label: Result Property
+    documentation: Property to save results to.
+    value: /myJob/results
+    required: true

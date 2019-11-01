@@ -1,0 +1,45 @@
+<!--
+    This form is generated automatically from the parameters pluginspec.
+    Please not not edit this file manually as it will be regenerated.
+-->
+<editor>
+  <help>/commander/pages/@PLUGIN_NAME@/help?s=Administration&amp;ss=Plugins#ScanFailedPipelines</help>
+  <formElement>
+    <type>project</type>
+    <property>projectName</property>
+    <required>1</required>
+    <documentation>Project to scan</documentation>
+    <label>Projects:</label>
+  </formElement>
+  <formElement>
+    <type>textarea</type>
+    <property>pipelines</property>
+    <required>0</required>
+    <documentation>List of pipelines to scan for failures. If nothing is provided, all the found pipelines are scanned.</documentation>
+    <label>Pipelines:</label>
+  </formElement>
+  <formElement>
+    <type>textarea</type>
+    <property>sendTo</property>
+    <required>0</required>
+    <documentation>List of emails to send reports to, newline-separated.</documentation>
+    <label>Send To:</label>
+  </formElement>
+  <formElement>
+    <type>entry</type>
+    <property>statePropertySheet</property>
+    <required>0</required>
+    <documentation>Property sheet to save state. Should be writable by the project @PLUGIN_NAME@.
+If not provided, the state will be saved into /mySchedule.
+</documentation>
+    <label>State Property Sheet:</label>
+  </formElement>
+  <formElement>
+    <type>entry</type>
+    <property>resultProperty</property>
+    <required>1</required>
+    <documentation>Property to save results to.</documentation>
+    <label>Result Property:</label>
+    <value>/myJob/results</value>
+  </formElement>
+</editor>
