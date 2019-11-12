@@ -1,6 +1,6 @@
 $[/myProject/perl/core/scripts/preamble.pl]
 
-use FlowPlugin::JobFailuresScanner;
+use FlowPlugin::CBJobFailuresScanner;
 # Auto generated code of plugin step
-# Go to dsl/properties/perl/lib/EC/Plugin/JobFailuresScanner.pm and change the function "scanFailedPipelines"
-FlowPlugin::JobFailuresScanner->runStep('Scan Failed Pipelines', 'Scan Failed Pipelines', 'scanFailedPipelines');
+# Go to dsl/properties/perl/lib/EC/Plugin/CBJobFailuresScanner.pm and change the function "scanFailedPipelines"
+FlowPlugin::CBJobFailuresScanner->runStep('Scan Failed Pipelines', 'Scan Failed Pipelines', 'scanFailedPipelines');

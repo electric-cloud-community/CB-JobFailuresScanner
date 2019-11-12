@@ -3,6 +3,8 @@ use strict;
 use warnings;
 use base qw/FlowPDF/;
 use FlowPDF::Log;
+use JSON;
+use DateTime;
 
 # Feel free to use new libraries here, e.g. use File::Temp;
 
@@ -51,7 +53,10 @@ sub scanFailedPipelines {
         };
     }
     logInfo "Filters: ", $filters;
-    my $runtimes = $ec->findObjects('flowRuntime', {filter => $filters});
+    my $maxNum = 20;
+
+    logInfo "Max $maxNum entries will be retrieved";
+    my $runtimes = $ec->findObjects('flowRuntime', {filter => $filters, numObjects => 20});
     logInfo $runtimes->{_xml};
     my $data = {};
 
@@ -83,6 +88,7 @@ sub scanFailedPipelines {
         my $json = encode_json($data);
         $ec->setProperty($r->{resultProperty} . '/json', $json);
         $ec->setProperty($r->{resultProperty} . '/links', join("\n" => @{$data->{links}}));
+        $ec->setProperty($r->{resultProperty} . '/text', join("\n" => @{$text}));
         logInfo "Saved data into $r->{resultProperty}";
     }
     my $now = DateTime->now;
